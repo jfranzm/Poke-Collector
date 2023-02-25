@@ -3,8 +3,9 @@
 
 <h1>Pokémon List</h1>
 
-{% for poke in pokemon %}
+{% for poke in pokemons %}
   <div class="card">
+    <a href="% url 'detail' poke.id %}"></a>
     <div class="card-content">
       <span class="card-title">{{ poke.name }}</span>
       <p>Type: {{ poke.type }}</p>

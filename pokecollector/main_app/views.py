@@ -1,26 +1,19 @@
 from django.shortcuts import render
+from .models import Pokemon
 
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("<h1>Gotta catch 'em all!</h1>")
+    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
 
 def pokemon_index(request):
-    return render(request, 'pokemon/index.html', {'pokemon': pokemon})
+    pokemons = Pokemon.objects.all()
+    return render(request, 'pokemon/index.html', {'pokemons': pokemons})
 
-class Pokemon:
-    def __init__(self, name, type, level, stage):
-        self.name = name
-        self.type = type
-        self.level = level
-        self.stage = stage
+def pokemon_detail(request, pokemon_id):
+    pokemon = Pokemon.objects.get(id=pokemon_id)
+    return render(request, 'pokemon/detail.html', {'pokemon': pokemon})
 
-pokemon = [
-    Pokemon('Bulbasaur', 'Grass/Poison', 5, 1),
-    Pokemon('Squirtle', 'Water', 5, 1),
-    Pokemon('Charmander', 'Fire', 5, 1),
-    Pokemon('Pikachu', 'Electric', 81, 2)
-]

@@ -4,21 +4,22 @@
 <h1>Pokémon List</h1>
 
 {% for poke in pokemons %}
-  <div class="card">
-    <a href="% url 'detail' poke.id %}"></a>
-    <div class="card-content">
-      <span class="card-title">{{ poke.name }}</span>
-      <p>Type: {{ poke.type }}</p>
-      <p>Level: {{ poke.level }}</p>
-      {% if poke.stage == 1 %}
-        <p>Stage: First</p>
-      {% elif poke.stage == 2 %}
-        <p>Stage: Second</p>
-      {% else %}
-        <p>Stage: Final</p>
-      {% endif %}
-    </div>
-  </div>
+    <a href="{% url 'pokemon_detail' poke.id %}">
+        <div class="card">
+            <div class="card-content">
+            <span class="card-title">{{ poke.name }}</span>
+            <p>Type: {{ poke.type }}</p>
+            <p>Level: {{ poke.level }}</p>
+            {% if poke.stage == 1 %}
+                <p>Stage: First</p>
+            {% elif poke.stage == 2 %}
+                <p>Stage: Second</p>
+            {% else %}
+                <p>Stage: Final</p>
+            {% endif %}
+            </div>
+        </div>
+    </a>
 {% endfor %}
 
 {% endblock %}
